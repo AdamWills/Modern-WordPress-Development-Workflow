@@ -1,0 +1,7 @@
+.reveal section img {
+	padding: 1em;
+}
+
+.reveal section img.img-white {
+	background: #fff;
+}
