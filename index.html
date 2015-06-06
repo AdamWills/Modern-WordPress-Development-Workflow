@@ -236,10 +236,9 @@ compiles to...
 
 // style.scss
 @import "reset";
-
-body {
-    background-color: #333;
-}
+@import "typography";
+@import "header";
+@import "footer";
                             
                         </code></pre>
 
@@ -255,7 +254,7 @@ body {
                     		
                 		<h3>How can I use with WordPress?</h3>
 
-                		<p>Anywhere you write CSS.</p>
+                		<p class="fragment">Anywhere you write CSS.</p>
 
                     </section>
 
@@ -313,7 +312,7 @@ gulp.task('build-css', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('source/scss/**/*.scss', ['build-css']);
+  gulp.watch('assets/scss/**/*.scss', ['build-css']);
 });
 
                         </code></pre>
@@ -557,7 +556,6 @@ gulp.task('watch', function() {
                 		<pre><code data-trim>
 {
     "name": "Adam's Awesome WordPress Site",
-    "description": "A really, really awesome website",
     "require": {
         "wpackagist-plugin/akismet": "3.1.*",
         "wpackagist-plugin/wordpress-seo": "2.1.*",
@@ -781,7 +779,9 @@ gulp.task('watch', function() {
 					
 					<h2>Thanks!</h2>
 
-					<p><a href="https://twitter.com/heavymetaladam">@heavymetaladam</a> | <a href="mailto:adam@adamwills.com">adam@adamwills.com</p>
+					<p>Slides - <a href="http://adamwills.github.io/WordCamp2015/#/">http://adamwills.github.io/WordCamp2015/</a></p>
+
+					<p>Twitter - <a href="https://twitter.com/heavymetaladam">@heavymetaladam</a></p>
 
 				</section>
 
