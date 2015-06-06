@@ -6,8 +6,8 @@
 
 		<title>Modern WordPress Developer's Toolkit</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="A presentation for WordCamp Hamilton 2015 on implementing modern dev tools into a WordPress dev setup">
+		<meta name="author" content="Adam Wills">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -50,31 +50,610 @@
 						</small>
 					</p>
 						<aside class="notes">
-							Notes examples
+							going to talk about some modern tools that you can use in WP dev
+							talk about them in real scenarios
+
 						</aside>
 				</section>
 
 				<section>
 					<h2>About Me</h2>
 
+					<ul>
+						<li class="fragment">Live and work in Hamilton</li>
+						<li class="fragment">Making websites for 15+ years</li>
+						<li class="fragment">WordPress for 6+ years</li>
+						<li class="fragment">Still getting overwhelmed by tools</li>
+					</ul>
+
 				</section>
 
 				<section>
-					
-					<section>
-						
-						<h2>Issue #1: Sharing Code</h2>
-					
-					</section>
+
+					<h2>Roadmap</h2>
+
+					<ul>
+						<li class="fragment">Explore problems</li>
+						<li class="fragment">Explore tools</li>
+						<li class="fragment">How do they apply to WordPress?</li>
+						<li class="fragment">Relax</li>
+					</ul>
 
 
 				</section>
 
+				<section>
+
+					<section>
+
+						<h2>Let's talk about CSS</h2>
+
+						<p class="fragment"><img src="img/gif-css.gif" alt="CSS Frustrations"></p>
+
+						<aside class="notes">
+							<ul>
+								<li>Repetition (.sidebar h2, .sidebar li, .sidebar p)</li>
+								<li>Long files</li>
+								<li>What if you want to change the colour of something - make multiple changes</li>
+							</ul>
+						</aside>
+						
+					</section>
+
+					<section>
+						
+						<h3>Enter CSS Preprocessors!</h3>
+
+						<img src="img/sass-logo.png" height="250" alt="Sass">
+						<img src="img/less-logo.png" height="250"  alt="Less">
+
+						<aside class="notes">
+
+							<p>A preprocessor processes its code before the client consumes it.</p>
+							<p>Bootstrap built on LESS, next version will be based on SASS.</p>
+							
+						</aside>
+
+					</section>
+
+					<section>
+
+						<h3>Advantages of CSS Preprocessors</h3>
+
+						<div class="fragment">
+
+						<h4>Variables!</h4>
+
+						<pre><code data-trim>
+								
+$brand-primary:  PapayaWhip;
+
+.button {
+    background-color: $brand-primary;
+}
+</code></pre>
+
+compiles to...
+
+<pre><code data-trim>
+
+.button {
+    background-color: PapayaWhip;
+}
+
+						</code></pre>
+
+						</div>
+
+						<aside class="notes">
+							<p>Fun CSS color name: PeachPuff</p>
+						</aside>
+
+					</section>
+
+					<section>
+						
+						<h4>Functions!</h4>
+
+						<pre><code data-trim>
+						
+$brand-primary:  PapayaWhip;
+
+.button:hover {
+    background-color: darken($brand-primary,10%);
+}
+						</code></pre>
+
+compiles to...
+
+                        <pre><code data-trim>
+                            
+.button:hover {
+  background-color: #ffdca2;
+}
+
+                        </code></pre>
+
+					</section>
+
+					<section>
+							
+						<h4>Nesting!</h4>
+
+						<pre><code data-trim>
+
+.sidebar {
+    h2 {
+        font-size: 0.9em;
+    }
+
+    li {
+        list-style: none;
+    }
+}							
+						</code></pre>
+
+compiles to...
+
+						<pre><code data-trim>
+
+.sidebar h2 {
+    font-size: 0.9em;
+}
+
+.sidebar li {
+    list-style: none;
+}
+							
+						</code></pre>
+
+						<aside class="notes">
+							Previous example of repeating sidebar styles
+						</aside>
+
+					</section>
+
+                    <section>
+                            
+                        <h4>Imports!</h4>
+
+                        <pre><code data-trim>
+
+// _reset.scss
+html,
+body,
+ul,
+ol {
+   margin: 0;
+  padding: 0;
+}                         
+                        </code></pre>
+
+compiles to...
+
+
+                        <pre><code data-trim>
+
+// style.scss
+@import "reset";
+
+body {
+    background-color: #333;
+}
+                            
+                        </code></pre>
+
+                        <aside class="notes">
+                        	<p>Examples of imports: Reset, typography, buttons, footer, sidebar</p>
+                        	<p>only 1 http request vs css imports</p>
+                        </aside>
+
+
+                    </section>
+
+                    <section>
+                    		
+                		<h3>How can I use with WordPress?</h3>
+
+                		<p>Anywhere you write CSS.</p>
+
+                    </section>
+
+				</section>
+
+                <section>
+                    
+                    <section>
+                        
+                        <h2>Repetitive Tasks</h2>
+
+                        <ul>
+                            <li class="fragment">Compiling SASS files</li>
+                            <li class="fragment">Concatenating JS files</li>
+                            <li class="fragment">Reloading browser</li>
+                        </ul>
+
+                    </section>
+
+                    <section>
+                    	
+                    	<img src="img/repetition.gif" height="378" width="500" alt="Repetitive tasks are the worst">
+
+                    </section>
+
+                    <section>
+                        
+                        <h3>Task runners!</h3>
+
+                        <img src="img/grunt.png" alt="Grunt" class="fragment">
+                        <img src="img/gulp.png"  alt="Gulp" class="fragment">
+
+                        <aside class="notes">
+                        	<p>Grunt: sequential, every task requires source and destination.</p>
+                        	<p>Gulp: asynchronous, uses pipeline</p>
+                        </aside>
+
+                    </section>
+
+                    <section>
+                        
+                        <h3>Anatomy of a Gulp file</h3>
+
+                        <pre><code data-trim>
+                            
+// gulpfile.js
+
+var gulp   = require('gulp'),
+    sass   = require('gulp-sass');
+
+gulp.task('build-css', function() {
+  return gulp.src('assets/scss/**/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('/assets/css'));
+});
+
+gulp.task('watch', function() {
+  gulp.watch('source/scss/**/*.scss', ['build-css']);
+});
+
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        
+                        <h3>Other useful tasks</h3>
+
+                        <ul>
+                            <li class="fragment">Optimize images (imagemin)</li>
+                            <li class="fragment">Add vendor prefixes to css (autoprefixer)</li>
+                            <li class="fragment">Code error checking (jshint)</li>
+                            <li class="fragment">Minify CSS (minify)</li>
+                            <li class="fragment">Uglify JS (uglify)</li>
+                            <li class="fragment">Auto reload browser (Browsersync)</li>
+                        </ul>
+
+                        <aside class="notes">
+                        	<p>Vendor Prefixes: box-shadow, transform, transition, animation, box-sizing</p>
+                        </aside>
+
+                    </section>
+
+                    <section>
+                        
+                        <h3>Command line not your thing?</h3>
+
+                        <img src="img/codekit.png" alt="Codekit" class="img-white">
+                        <img src="img/prepros.png" alt="Prepros">
+
+                        <aside class="notes">
+                        	Codekit for osx only, prepros cross platform
+                        </aside>
+
+                    </section>
+
+                    <section>
+                        
+                        <h3>Codekit &amp; Prepros</h3>
+
+                        <ul>
+                            <li class="fragment">Compiles SASS, LESS, CoffeeScript</li>
+                            <li class="fragment">Auto refreshes browsers</li>
+                            <li class="fragment">Autoprefixer</li>
+                            <li class="fragment">Optimizes images</li>
+                        </ul>
+
+                        <aside class="notes">
+                        
+                            No way to save configuration across projects
+                        </aside>
+
+                    </section>
+
+                    <section>
+                    		
+                		<h3>How can I use with WordPress?</h3>
+
+                		<ul>
+                			<li class="fragment">Theme Development</li>
+                			<li class="fragment">Plugin Development</li>
+                		</ul>
+
+                    </section>
+
+                </section>
+
+            	<section>
+
+                	<section>
+
+                		
+                		<h2>Source code issues</h2>
+
+                		<ul>
+                			<li class="fragment">Overwrite each other's changes</li>
+                			<li class="fragment">Roll back changes?</li>
+                			<li class="fragment">Code review?</li>
+                			<li class="fragment">Code not backed up</li>
+                			<li class="fragment">Deploy... what changes?</li>
+                		</ul>
+
+                	</section>
+
+                	<section>
+                		
+						<img src="img/wtfranger.gif" alt="Green Power Ranger is frustrated">
+
+                	</section>
+                	
+                	<section>
+
+                		<h3>Git!</h3>
+
+                		<p><img src="img/git.png" alt="Git"></p>
+                	
+                	</section>
+
+                	<section>
+                		
+                		<h3>Git helps!</h3>
+
+                		<ul>
+                			<li class="fragment">Work in "branches"</li>
+                			<li class="fragment">Easily see changes made along project's history</li>
+                			<li class="fragment">Can easily roll back changes to project/files</li>
+                		</ul>
+
+                	</section>
+
+                	<section>
+                		
+                		<h3>Git Repo Hosting Services</h3>
+
+                		<p><img src="img/github.png" alt="Github" width="300px;"> <img src="img/bitbucket.png" width="300px" alt="BitBucket"></p>
+
+                		<aside class="notes">
+                			<p>Mention pricing structure</p>
+                		</aside>
+
+                	</section>
+
+                	<section>
+                		
+                		<h3>Git Repo Hosting Services</h3>
+
+                		<ul>
+                			<li class="fragment">Issue Tracking</li>
+                			<li class="fragment">Code review</li>
+                			<li class="fragment">Code backup!</li>
+                		</ul>
+
+                	</section>
+
+                	<section>
+                		
+                		<h3>Not into command line?</h3>
+
+                		<p class="fragment">Don't worry - you're covered.</p>
+
+
+                		<div class="fragment">
+                			<div style="float: left; width: 50%; text-align: right; padding-right: 15px" >
+                				<img src="img/github-windows.png" class="img-dark" style="display:inline-block; margin-top: 60px;" alt="GitHub for Windows">
+                				<img src="img/sourcetree.png" style="margin-top: 0;" alt="SourceTree">
+                			</div>
+                			<div style="float:left;">
+                				<img src="img/git-tower.png" height="256" alt="Git Tower">
+                			</div>
+                		</div>
+
+
+                	</section>
+
+                	<section>
+                		
+                		<h3>Working in a team? Establish a Workflow</h3>
+
+                		<p class="fragment"><a href="http://nvie.com/posts/a-successful-git-branching-model/">Git Flow</a> (nvie.com)</p>
+                			
+
+                		<aside class="notes">
+                			<ul>
+                				<li>Git Flow by Vincent Driessen</li>
+                			</ul>
+                		</aside>
+
+                	</section>
+
+                	<section>
+                    		
+                		<h3>How can I use with WordPress?</h3>
+
+                		<ul>
+                			<li class="fragment">Theme Development</li>
+                			<li class="fragment">Plugin Development</li>
+                			<li class="fragment">Entire WordPress Site</li>
+                		</ul>
+
+                    </section>
+
+                </section>
+
+                <section>
+                	
+                	<section>
+                		
+                		<h2>Other people's code</h2>
+
+                		<ul class="fragment">
+                			<li>WordPress Plugins</li>
+                			<li>WordPress Core</li>
+                			<li>Front-end libraries (Bootstrap, Foundation)</li>
+                			<li>Development tools (Grunt, Gulp)</li>
+                		</ul>
+                		
+                	</section>
+
+                	<section>
+                		
+						<h3>Problems with other people's code</h3>
+
+						<ul>
+							<li class="fragment">Bloat your git repository</li>
+							<li class="fragment">Pain to get specific versions</li>
+							<li class="fragment">Hassle to update</li>
+						</ul>
+
+                	</section>
+
+                	<section>
+                		
+                		<h3>Package Managers!</h3>
+
+                		<ul>
+                			<li class="fragment">Composer (PHP)</li>
+                			<li class="fragment">Bower (Front End)</li>
+                			<li class="fragment">Npm (Node)</li>
+                		</ul>
+
+                		<aside class="notes">
+                			Use registries as a directory of pieces of code.
+                			Composer users packagist / WordPress uses wpackagist - mirrors the WordPress plugin and theme directories as a Composer repository. 
+                		</aside>
+
+                	</section>
+
+                	<section>
+                		
+                		<h3>Composer (PHP)</h3>
+                		
+                		<img src="img/composer.png" height="300" class="img-white">
+                		
+                	</section>
+
+                	<section>
+
+                		<h3>Anatomy of a composer.json file</h3>
+                		
+                		<pre><code data-trim>
+{
+    "name": "Adam's Awesome WordPress Site",
+    "description": "A really, really awesome website",
+    "require": {
+        "wpackagist-plugin/akismet": "3.1.*",
+        "wpackagist-plugin/wordpress-seo": "2.1.*",
+        "johnpbloch/wordpress": "4.2.2"
+    },
+    "extra": {
+        "installer-paths": {
+          "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
+        },
+        "wordpress-install-dir": "wp"
+      }
+}               			
+                		</code></pre>
+                	</section>
+
+                	<section>
+                		
+						<h4>How Do I Use Composer?</h4>
+
+						<p class="fragment">Install from composer.json</p>
+
+						<pre class="fragment"><code data-trim>
+> composer install
+						</code></pre>
+
+						<p class="fragment">Update from composer.json</p>
+
+						<pre class="fragment"><code data-trim>
+> composer update
+						</code></pre>
+
+                	</section>
+
+                	<section>
+                		
+						<h4>How can I use Composer in WordPress?</h4>
+
+						<ul>
+							<li class="fragment">WordPress Core</li>
+							<li class="fragment">WordPress Plugins</li>
+							<li class="fragment">PHPUnit</li>
+						</ul>
+
+                	</section>
+
+                	<section>
+                		
+                		<h3>Bower</h3>
+
+                		<img src="img/bower-logo.png"  alt="Bower">
+                	</section>
+
+                	<section>
+                		
+                		<h4>How can I use Bower with WordPress</h4>
+
+                		<ul>
+                			<li class="fragment">Adding CSS frameworks to a theme</li>
+                			<li class="fragment">Adding JS libraries to a plugin</li>
+                		</ul>
+
+                		<aside class="notes">
+                			<p>CSS (Bootstrap, Foundation)</p>
+                			<p>JS (d3 (visualization), moment.js (displaying dates/times))</p>
+                		</aside>
+
+                	</section>
+
+                	<section>
+                		
+                		<h3>Npm</h3>
+
+                		<img src="img/npm-logo.svg" alt="npm">
+                	</section>
+
+                	<section>
+                		
+                		<h4>How can I use npm with WordPress</h4>
+
+                		<ul>
+                			<li class="fragment">Installing other tools like Gulp and Bower</li>
+                			<li class="fragment">Processes such as compiling SASS or LESS </li>
+                		</ul>
+
+                		<aside class="notes">
+                			more behind the scenes tools rather than things that will show on the front end
+                		</aside>
+
+                	</section>
+
+                </section>
 				
 				<section>
 
 					<section>
-						<h2>Issue #2: Environments</h2>
+						<h2>Environments</h2>
 						<ul>
 							<li class="fragment">Varying OS's</li>
 							<li class="fragment">Broken Dependencies</li>
@@ -83,14 +662,21 @@
 					</section>
 
 					<section>
-						<h2>Vagrant</h2>
-						<img src="img/vagrant.png" height="300" class="img-white">
+						
+						<img src="img/works-my-machine.jpg" alt="Works on my machine award">
+
 					</section>
 
 					<section>
-						<h3>What is Vagrant?</h3>
-					</section>
+						<h2>Vagrant</h2>
+						<img src="img/vagrant.png" height="300" class="img-white">
 
+						<aside class="notes">
+							Vagrant creates and configures virtual development environments. With configuration files, download the image, configure the server including any system software, packages. (apache, mysql, etc)
+							Paul Bearne - "How to Set Up a Vagrant Development System" @ 11:30am
+						</aside>
+					</section>
+	
 					<section>
 						<h3>Benefits of Vagrant</h3>
 						<ul>
@@ -102,14 +688,17 @@
 					</section>
 
 					<section>
-						<h3>Common Vagrant Images</h3>
+						<h3>Common Vagrant WordPress Images</h3>
 						<ul>
 							<li><a href="http://vagrantpress.org/">Vagrantpress</a></li>
 							<li><a href="https://github.com/Varying-Vagrant-Vagrants/VVV">Varying Vagrant Vagrants</a></li>
 							<li><a href="http://wpengine.com/mercury">Mercury (WPEngine)</a></li>
-							<li><a href="http://vccw.cc/">VCCW</a></li>
-							<li><a href="https://github.com/roots/bedrock-ansible">Berock Ansible</a></li>
+							<li><a href="https://github.com/roots/bedrock-ansible">Bedrock Ansible</a></li>
 						</ul>
+
+						<aside class="notes">
+							Mercury - HHVM
+						</aside>
 					</section>
 
 					<section>
@@ -121,73 +710,88 @@
 
 						<aside class="notes">
 							<p>Why roll your own? You may want to mirror your production environment as close as possible.</p>
+
+							<p>Paul Bearne - "How to Set Up a Vagrant Development System" @ 11:30am</p>
+
+							<p>Mention Docker?</p>
+						</aside>
+					
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						
+						<h2>So...</h2>
+
+						<aside class="notes">
+							-talked about lots of problems
+							-talked about lots of tools solve problems
+							-don't get overwhelmed. relax
+							-how do I move forward?
+						</aside>
+
+					</section>
+
+					<section>
+						
+						<h3>One thing.</h3>
+
+						<aside class="notes">
+							- one problem at a time
+							- find a way to resolve that issue
 						</aside>
 					</section>
+
+					<section>
+						
+						<h3>At first...</h3>
+
+						<img src="img/fail.gif" alt="Failing is ok">
+
+						<aside class="notes">
+							failing is ok. after a while, you get comfortable.
+						</aside>
+
+					</section>
+
+					<section>
+						
+						<h4>Then something happens.</h4>
+
+						<img src="img/bork.gif" height="400" alt="It all makes sense" class="fragment">
+
+						<aside class="notes">
+							<p>"A-ha moment". It all makes sense. Then you approach another problem. Repeat.</p>
+						</aside>
+
+					</section>
+
+					<section>
+						
+						<h4>Spend more time on development than on development issues.</h4>
+
+					</section>
+				
 				</section>
 
 				<section>
 					
-					<section>
-						
-						<h2>Issue #3: Dependency Management</h2>
+					<h2>Thanks!</h2>
 
-						<p class="fragment">Dependencies in WordPress a WordPress Project</p>
-
-						<ul class="fragment">
-							<li>Plugins</li>
-							<li>Themes</li>
-							<li>WordPress Core</li>
-						</ul>
-
-						<aside class="notes">
-							<p>A dependancy is a library, framework or component provided by a third party that your project relies on.</p>
-						</aside>
-						
-					</section>
-
-					<section>
-						
-						<h3>Why Use Dependency Management?</h3>
-
-						<ul>
-							
-							<li class="fragment">Reduces repository bloat</li>
-
-						</ul>
-			
-
-
-					</section>
-
-					<section>
-						
-						<h2>Composer</h2>
-						
-						<img src="img/composer.png" height="300" class="img-white">
-						
-					</section>
-
-
-
+					<p><a href="https://twitter.com/heavymetaladam">@heavymetaladam</a> | <a href="mailto:adam@adamwills.com">adam@adamwills.com</p>
 
 				</section>
 
-				<section>
-					<h2>Starter Themes</h2>
-					<img src="img/underscores.png" height="300">
-					<img src="img/roots.png" height="300">
-				</section>
-
-				<section>
-					<h2>Task Runners</h2>
-				</section>
-
-				<section>
-					<h2>Deployment</h2>
-				</section>
 				
 			</div>
 
+		</div>
+
+		<div class="footer">
+			@heavymetaladam - #wcyhm
 		</div>
 
 		<script src="lib/js/head.min.js"></script>

@@ -1,0 +1,103 @@
+introduce joey and sarah
+joey is a web developer making wordpress sites on his own (on windows machine). partnered with sarah (on a mac) to make more wordpress sites
+
+scenario 1:
+start working... sarah makes some changes to the css file. uploads it to their dev server. joey makes changes to the css file. uploads it to their dev server. sarah's changes are now gone (drats!)
+
+Introduce: git!
+
+Scenarios
+===========
+- sharing code, overriding each others changes
+- no way to easy roll back changes
+- code review
+- code is backed up
+
+* Source Control
+** Git
+** Github
+** Bitbucket
+
+Scenarios
+===========
+- multiple people working on same CSS file
+- file becomes very large, hard to maintain
+
+* SASS
+* LESS
+
+Scenarios
+==========
+- want to get into performance
+- minifying and concatenating JS
+- minifying and running SASS
+- reloading page every time
+
+* Task Runners
+** Grunt
+** Gulp
+
+
+Scenarios
+===========
+- working on different version of plugins
+- no need to store WordPress, plugins in the repository
+- able to target versions of plugins and core to help diagnose issues
+- easy to update versions
+
+* Composer
+** wpackagist
+* npm
+* Bower
+
+
+Scenarios
+===========
+- takes awhile to get started on a project
+- small things that aren't thought about
+- very repititive, boring work
+
+* Starter Themes
+** _s, Sage, etc
+
+
+Scenarios
+==========
+- new member takes a while to set up local environment
+- "it works on my system"
+
+* Environments - Vagrant
+** VVV
+** HHVM one
+** PuPHPet
+** Bedrock Ansible
+* Docker
+
+Scenarios
+============
+- Deployment is messy
+- FTP takes forever
+- if it breaks, no way to roll back
+
+* Deployment
+** Git
+** Capistrano
+** CI??
+
+
+
+!!!!!!!!!!!!!!!!!!!
+
+What's my "big message?"
+-don't get overwhelmed
+-lots of tools out there
+-find the right tools to fix YOUR problems
+-from the time i started this talk, tools have changed, evolved, etc
+-how to think about these tools (with the rate of change, feeling overwhelmed)
+-at the end of talk, things will have changed
+-don't feel the need to change your tooling all the time
+-spend more time on development than your tools
+-how to decide which tools to use? (how did I come to what tools I use)
+-talk to development community (plug Hamilton WordPress Meetup group)
+-is there a one liner about using these tools?
+-this is about MY journey with discovering these tools and implementing them in my process
